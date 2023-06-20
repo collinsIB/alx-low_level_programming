@@ -3,22 +3,22 @@
 /**
   * main - Prints the numbers from 00 to 99
   *
-  * Return: 0 (Success)
+  * Return: Always (Success)
   */
 int main(void)
 {
-	int c, n;
+	int c, i;
 
-	c = n = '0';
+	c = i = '0';
 
 	for (c = '0'; c <= '9'; c++)
 	{
-		for (n = '0'; n <= '9'; n++)
+		for (i = '0'; i <= '9'; i++)
 		{
 			putchar(c);
-			putchar(n);
+			putchar(i);
 
-			if ((c != '9') || (c == '9' && n != '9'))
+			if ((c != '9') || (c == '9' && i != '9'))
 			{
 				putchar(',');
 				putchar(' ');
@@ -30,3 +30,4 @@ int main(void)
 
 	return (0);
 }
+
