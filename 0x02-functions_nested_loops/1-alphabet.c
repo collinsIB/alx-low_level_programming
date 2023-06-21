@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * main - entry level print alphabet in lowercase
- * created by obi
+ * print-alphabet - print alphabet in lowercase
  *
- * Return: Always 0
+ * Return: 0.
+ *
  */
 
 void print_alphabet(void)
