@@ -4,8 +4,7 @@
  * _isalpha -checks alphabetic character
  * @c: is the character to check
  *
- * Return: 1 if c is a letter, low or upper
- * Return: 0 otherwise
+ * Return: 1 if c is a letter, low or upper,0 otherwise
  */
 
 int _isalpha(int c)
