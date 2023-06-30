@@ -4,7 +4,7 @@
  * _strncpy - copies a string
  * @dest: string value
  * @src: string value
- * @n: integar value
+ * @n: input value
  *
  * Return: dest
  */
@@ -12,6 +12,8 @@
 char *_strncpy(char *dest, char *src, int n)
 {
 	int k;
+
+	k = 0;
 
 	while (k < n && src[k] != '\0')
 	{
