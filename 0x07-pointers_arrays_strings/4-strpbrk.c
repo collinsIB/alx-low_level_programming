@@ -1,9 +1,9 @@
 #include "main.h"
-
+#include <stdio.h>
 
 /**
  * _strpbrk - searches a string
- * @@s: string to search
+ * @s: string to search
  * @accept: bytes in the string
  *
  * Return: a pointer to the byte
