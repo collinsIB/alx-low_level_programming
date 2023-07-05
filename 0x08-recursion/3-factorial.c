@@ -1,29 +1,17 @@
-#include <stdio.h>
 #include "main.h"
 
 /**
- * factorial - returns the factorial of a given number
- * if n is lower than 0, return -1 to indicate error
- * @n: given  number
+ * factorial - returns the factorial of a number
+ * @n: number to return the factorial from
  *
- * Return: result
+ * Return: factorial of n
  */
-
 int factorial(int n)
 {
-	int i;
-	int result;
-
 	if (n < 0)
-
-	{
 		return (-1);
-	}
-	result = 1;
-
-	for (i = 1; i <= n; i++)
-	{
-		result *= i;
-	}
-	return (result);
+	if (n == 0)
+		return (1);
+	return (n * factorial(n - 1));
 }
+
