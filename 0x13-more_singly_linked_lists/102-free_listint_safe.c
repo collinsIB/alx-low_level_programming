@@ -1,41 +1,29 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "lists.h"
 
 /**
- * main - check the code
+ * free_listint_safe - frees a listint_t list
+ * @h: double pointer to the first node of the list
  *
- * Return: Always 0.
+ * Return: the size of the list
  */
-int main(void)
+size_t free_listint_safe(listint_t **h)
 {
-    listint_t *head;
-    listint_t *head2;
-    listint_t *node;
+	size_t count = 0;
 
-    head2 = NULL;
-    add_nodeint(&head2, 0);
-    add_nodeint(&head2, 1);
-    add_nodeint(&head2, 2);
-    add_nodeint(&head2, 3);
-    add_nodeint(&head2, 4);
-    add_nodeint(&head2, 98);
-    add_nodeint(&head2, 402);
-    add_nodeint(&head2, 1024);
-    print_listint_safe(head2);
-    head = NULL;
-    node = add_nodeint(&head, 0);
-    add_nodeint(&head, 1);
-    add_nodeint(&head, 2);
-    add_nodeint(&head, 3);
-    add_nodeint(&head, 4);
-    node->next = add_nodeint(&head, 98);
-    add_nodeint(&head, 402);
-    add_nodeint(&head, 1024);
-    print_listint_safe(head);
-    free_listint_safe(&head2);
-    free_listint_safe(&head);
-    printf("%p, %p\n", (void *)head2, (void *)head);
-    return (0);
+	listint_t *tmp;
+
+	if (!h || !*h)
+		return (0);
+
+	while (*h)
+	{
+		tmp = (*h)->next;
+		free(*h);
+		*h = tmp;
+		count++;
+	}
+
+	*h = NULL;
+
+	return (count);
 }
