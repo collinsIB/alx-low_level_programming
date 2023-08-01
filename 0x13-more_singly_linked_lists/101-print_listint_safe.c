@@ -1,47 +1,5 @@
 #include "lists.h"
 
-size_t looped_listint_len(const listint_t *head);
-size_t print_listint_safe(const listint_t *head);
-
-/**
- * looped_listint_len - counts number of unique codes
- * @head: a pointer to the head
- *
- * Return: if the list is not looped 0
- */
-size_t looped_listint_len(const listint_t *head)
-{
-	const listint_t *c, *b;
-	size_t nodes = 1;
-
-	if (head == NULL || head->next == NULL)
-		return (0);
-
-	c = head->next;
-	b = (head->next)->next;
-
-	while (b)
-	{
-		if (c == b)
-		{
-			c = head;
-
-			while (c != b)
-			{
-				nodes++;
-				c = c->next;
-			}
-
-			return (nodes);
-		}
-
-		c = c->next;
-		b = (b->next)->next;
-	}
-
-	return (0);
-}
-
 /**
  * print_listint_safe - prints a listint_t linked list
  * @head: pointer to the first node of the list
@@ -54,7 +12,7 @@ size_t print_listint_safe(const listint_t *head)
 
 	const listint_t *slow, *fast;
 
-	if (!head)
+	if (head == NULL)
 		exit(98);
 
 	slow = head;
@@ -62,22 +20,23 @@ size_t print_listint_safe(const listint_t *head)
 
 	while (slow && fast && fast->next)
 	{
+		printf("[%p] %d\n", (void *)slow, slow->n);
+		count++;
 		slow = slow->next;
 		fast = fast->next->next;
 
 		if (slow == fast)
 		{
 			printf("-> [%p] %d\n", (void *)slow, slow->n);
-			exit(98);
+			return (count);
+
 		}
 	}
-
-	while (head)
+	while (slow)
 	{
-		printf("[%p] %d\n", (void *)head, head->n);
-		head = head->next;
+		printf("[%p] %d\n", (void *)slow, slow->n);
 		count++;
+		slow = slow->next;
 	}
-
 	return (count);
 }
