@@ -19,7 +19,6 @@ void print_entry(Elf64_Ehdr header);
  * @argv: array of command line arguments
  * Return: 0 on success, 98 on error
  */
-
 int main(int argc, char **argv)
 {
 	int fd;
@@ -31,22 +30,24 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Usage: %s elf_filename\n", argv[0]);
 		exit(98);
 	}
-	fd = open(argv[1], O_RDONLY);
 
+	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Cannot read file %s\n", argv[1]);
 		close(fd);
 		exit(98);
 	}
+
 	e_ident = header.e_ident;
 	if (e_ident[EI_MAG0] != ELFMAG0 || e_ident[EI_MAG1] != ELFMAG1)
 		if (e_ident[EI_MAG2] != ELFMAG2 || e_ident[EI_MAG3] != ELFMAG3)
-		{
-			dprintf(STDERR_FILENO, "Error: %s is not an ELF file\n", argv[1]);
-			close(fd);
-			exit(98);
-		}
+	{
+		dprintf(STDERR_FILENO, "Error: %s is not an ELF file\n", argv[1]);
+		close(fd);
+		exit(98);
+	}
+
 	printf("ELF Header:\n");
 	print_magic(e_ident);
 	print_class(e_ident);
@@ -56,6 +57,7 @@ int main(int argc, char **argv)
 	print_abiversion(e_ident);
 	print_type(header);
 	print_entry(header);
+
 	close(fd);
 	return (0);
 }
@@ -64,7 +66,6 @@ int main(int argc, char **argv)
  * print_magic - prints the magic number of an ELF header
  * @e_ident: pointer to the e_ident field of an Elf64_Ehdr struct
  */
-
 void print_magic(unsigned char *e_ident)
 {
 	int i;
